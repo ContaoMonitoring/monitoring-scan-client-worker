@@ -1,19 +1,19 @@
-[![Latest Version on Packagist](http://img.shields.io/packagist/v/contao-monitoring/monitoring-scan-client-updater.svg?style=flat)](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-updater)
-[![Installations via composer per month](http://img.shields.io/packagist/dm/contao-monitoring/monitoring-scan-client-updater.svg?style=flat)](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-updater)
-[![Installations via composer total](http://img.shields.io/packagist/dt/contao-monitoring/monitoring-scan-client-updater.svg?style=flat)](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-updater)
+[![Latest Version on Packagist](http://img.shields.io/packagist/v/contao-monitoring/monitoring-scan-client-worker.svg?style=flat)](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-worker)
+[![Installations via composer per month](http://img.shields.io/packagist/dm/contao-monitoring/monitoring-scan-client-worker.svg?style=flat)](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-worker)
+[![Installations via composer total](http://img.shields.io/packagist/dt/contao-monitoring/monitoring-scan-client-worker.svg?style=flat)](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-worker)
 
-Contao Extension: MonitoringScanClientUpdater
+Contao Extension: MonitoringScanClientWorker
 =============================================
 
-Provides components to update the scanned client data for the Contao Monitoring system.
+Provides components to work off the scanned client data for the Contao Monitoring system.
 
 
 Installation
 ------------
 
-Install the extension via composer: [contao-monitoring/monitoring-scan-client-updater](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-updater).
+Install the extension via composer: [contao-monitoring/monitoring-scan-client-worker](https://packagist.org/packages/contao-monitoring/monitoring-scan-client-worker).
 
-If you prefer to install it manually, download the latest release here: https://github.com/ContaoMonitoring/monitoring-scan-client-updater/releases
+If you prefer to install it manually, download the latest release here: https://github.com/ContaoMonitoring/monitoring-scan-client-worker/releases
 
 After installation go to the system settings for defining, if auto update should be enabled.
 
@@ -21,7 +21,7 @@ After installation go to the system settings for defining, if auto update should
 Tracker
 -------
 
-https://github.com/ContaoMonitoring/monitoring-scan-client-updater/issues
+https://github.com/ContaoMonitoring/monitoring-scan-client-worker/issues
 
 
 Compatibility
