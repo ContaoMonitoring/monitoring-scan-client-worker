@@ -1,9 +1,9 @@
 {
-	"name":"contao-monitoring/monitoring-scan-client-updater",
-	"description":"Provides components to update the scanned client data for the Contao Monitoring system.",
+	"name":"contao-monitoring/monitoring-scan-client-worker",
+	"description":"Provides components to work off the scanned client data for the Contao Monitoring system.",
 	"keywords":["contao","monitoring"],
 	"type":"contao-module",
-	"homepage":"https://github.com/ContaoMonitoring/monitoring-scan-client-updater",
+	"homepage":"https://github.com/ContaoMonitoring/monitoring-scan-client-worker",
 	"license":"LGPL-3.0+",
 	"authors":[
 		{
@@ -14,8 +14,8 @@
 	],
 	"support":{
 		"email":"contao@cliff-parnitzky.de",
-		"issues":"https://github.com/ContaoMonitoring/monitoring-scan-client-updater/issues",
-		"source":"https://github.com/ContaoMonitoring/monitoring-scan-client-updater"
+		"issues":"https://github.com/ContaoMonitoring/monitoring-scan-client-worker/issues",
+		"source":"https://github.com/ContaoMonitoring/monitoring-scan-client-worker"
 	},
 	"require":{
 		"php":">=5.6",
@@ -27,7 +27,7 @@
 	"extra":{
 		"contao":{
 			"sources":{
-				"system/modules/MonitoringScanClientUpdater":"system/modules/MonitoringScanClientUpdater"
+				"system/modules/MonitoringScanClientWorker":"system/modules/MonitoringScanClientWorker"
 			}
 		},
 		"branch-alias": {
