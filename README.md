@@ -15,7 +15,7 @@ Install the extension via composer: [contao-monitoring/monitoring-scan-client-wo
 
 If you prefer to install it manually, download the latest release here: https://github.com/ContaoMonitoring/monitoring-scan-client-worker/releases
 
-After installation go to the system settings for defining, if auto update should be enabled.
+After installation go to the system settings for defining, if automatic execution of workers should be enabled.
 
 
 Tracker
