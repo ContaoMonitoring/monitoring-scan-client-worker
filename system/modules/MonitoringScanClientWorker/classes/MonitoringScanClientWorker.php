@@ -151,7 +151,7 @@ class MonitoringScanClientWorker extends \Backend
   {
     if (\Config::get('monitoringDebugMode') === TRUE)
     {
-      $this->log($msg, $origin, TL_INFO);
+      $this->log($msg, $origin, TL_GENERAL);
     }
   }
 }
