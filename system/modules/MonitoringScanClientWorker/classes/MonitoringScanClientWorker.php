@@ -113,7 +113,7 @@ class MonitoringScanClientWorker extends \Backend
    */
   private function scanClientWorkOffMonitoringEntry($objMonitoringEntry)
   {
-    if ($objMonitoringEntry != null && $objMonitoringEntry->client_scan_active)
+    if ($objMonitoringEntry != null && !$objMonitoringEntry->disable && $objMonitoringEntry->client_scan_active)
     {
       $monitoringScanClient = new \MonitoringScanClient();
       $response = $monitoringScanClient->scanClient($objMonitoringEntry->client_url, $objMonitoringEntry->client_token);
