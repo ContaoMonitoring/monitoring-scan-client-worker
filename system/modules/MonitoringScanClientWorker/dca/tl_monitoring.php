@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2017 Leo Feyer
+ * Copyright (C) 2005-2019 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    MonitoringScanClientWorker
  * @license    LGPL
@@ -31,6 +31,11 @@
  * Add css for styling global operations button
  */
 $GLOBALS['TL_CSS'][] = 'system/modules/MonitoringScanClientWorker/assets/styles.css';
+
+/**
+ * Add callback
+ */
+$GLOBALS['TL_DCA']['tl_monitoring']['config']['onload_callback'][] = array('tl_monitoring_MonitoringScanClientWorker', 'initPalettes');
 
 /**
  * Add global operations
@@ -57,11 +62,6 @@ $GLOBALS['TL_DCA']['tl_monitoring']['list']['operations']['scanClientWorkOffOne'
 );
 
 /**
- * Add to palette
- */
-$GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default'] .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
-
-/**
  * Add fields
  */
 $GLOBALS['TL_DCA']['tl_monitoring']['fields']['disable_auto_scanClientWorkerExecute'] = array
@@ -78,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_monitoring']['fields']['disable_auto_scanClientWorkerExec
  *
  * Provide miscellaneous methods that are used by the data configuration array.
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    Controller
  */
@@ -106,6 +106,31 @@ class tl_monitoring_MonitoringScanClientWorker extends Backend
   public function renderScanClientWorkerExecuteButton($row, $href, $label, $title, $icon)
   {
     return ($row['client_scan_active']) ? '<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . '" title="'.specialchars($title).'">'.Image::getHtml($icon, $label).'</a> ' : Image::getHtml(preg_replace('/\.png$/i', '_.png', $icon)).' ';
+  }
+
+  /**
+   * Initialize the palettes when loading
+   * @param \DataContainer
+   */
+  public function initPalettes()
+  {
+    if (\Input::get('act') == "edit")
+    {
+      $objMonitoringEntry = \MonitoringModel::findByPk(\Input::get('id'));
+      if ($objMonitoringEntry != null && $objMonitoringEntry->client_scan_active)
+      {
+        $arrDefaultPalletEntries = explode(";", $GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default']);
+        foreach ($arrDefaultPalletEntries as $index=>$entry)
+        {
+          if (strpos($entry, "{client_legend}") !== FALSE)
+          {
+            $entry .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
+            $arrDefaultPalletEntries[$index] = $entry;
+          }
+        }
+        $GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default'] = implode(";", $arrDefaultPalletEntries);
+      }
+    }
   }
 }
 
