@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2017 Leo Feyer
+ * Copyright (C) 2005-2019 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    MonitoringScanClientWorker
  * @license    LGPL
@@ -30,7 +30,7 @@
 /**
  * Misc messages
  */
-$GLOBALS['TL_LANG']['MSC']['monitoringScanClientWorkedOffOne'] = 'Die ausgelesenen Klienten Daten des Monitoring Eintrags mit der ID %s wurden abgearbeitet.';
-$GLOBALS['TL_LANG']['MSC']['monitoringScanClientWorkedOffAll'] = 'Die ausgelesenen Klienten Daten aller Monitoring Einträge wurden abgearbeitet.';
+$GLOBALS['TL_LANG']['MSC']['monitoringScanClientWorkedOffOne'] = 'Die ausgelesenen MonitoringClient Daten des Monitoring Eintrags mit der ID %s wurden abgearbeitet.';
+$GLOBALS['TL_LANG']['MSC']['monitoringScanClientWorkedOffAll'] = 'Die ausgelesenen MonitoringClient Daten aller Monitoring Einträge wurden abgearbeitet.';
 
 ?>

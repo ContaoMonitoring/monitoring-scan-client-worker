@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2017 Leo Feyer
+ * Copyright (C) 2005-2019 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    MonitoringScanClientWorker
  * @license    LGPL
@@ -30,6 +30,6 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_settings']['monitoringAutoScanClientWorkOffActive'] = array('Activate automatic execution of workers for client data', 'Select if automatic execution of workers for scanned client data should be active.');
+$GLOBALS['TL_LANG']['tl_settings']['monitoringAutoScanClientWorkOffActive'] = array('Activate automatic execution of workers for MonitoringClient data', 'Select if automatic execution of workers for scanned MonitoringClient data should be active.');
 
 ?>
