@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2017 Leo Feyer
+ * Copyright (C) 2005-2019 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    MonitoringScanClientWorker
  * @license    LGPL
@@ -59,7 +59,16 @@ $GLOBALS['TL_DCA']['tl_monitoring']['list']['operations']['scanClientWorkOffOne'
 /**
  * Add to palette
  */
-$GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default'] .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
+$arrDefaultPalletEntries = explode(";", $GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default']);
+foreach ($arrDefaultPalletEntries as $index=>$entry)
+{
+  if (strpos($entry, "{client_legend}") !== FALSE)
+  {
+    $entry .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
+    $arrDefaultPalletEntries[$index] = $entry;
+  }
+}
+$GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default'] = implode(";", $arrDefaultPalletEntries); 
 
 /**
  * Add fields
@@ -78,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_monitoring']['fields']['disable_auto_scanClientWorkerExec
  *
  * Provide miscellaneous methods that are used by the data configuration array.
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    Controller
  */
