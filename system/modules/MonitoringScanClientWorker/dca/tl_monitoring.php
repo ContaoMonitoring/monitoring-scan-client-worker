@@ -33,6 +33,11 @@
 $GLOBALS['TL_CSS'][] = 'system/modules/MonitoringScanClientWorker/assets/styles.css';
 
 /**
+ * Add callback
+ */
+$GLOBALS['TL_DCA']['tl_monitoring']['config']['onload_callback'][] = array('tl_monitoring_MonitoringScanClientWorker', 'initPalettes');
+
+/**
  * Add global operations
  */
 array_insert($GLOBALS['TL_DCA']['tl_monitoring']['list']['global_operations'], count($GLOBALS['TL_DCA']['tl_monitoring']['list']['global_operations']) - 1, array
@@ -55,20 +60,6 @@ $GLOBALS['TL_DCA']['tl_monitoring']['list']['operations']['scanClientWorkOffOne'
   'icon'                => 'system/modules/MonitoringScanClientWorker/assets/icon_scanClientWorkerExecute.png',
   'button_callback'     => array('tl_monitoring_MonitoringScanClientWorker', 'renderScanClientWorkerExecuteButton') 
 );
-
-/**
- * Add to palette
- */
-$arrDefaultPalletEntries = explode(";", $GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default']);
-foreach ($arrDefaultPalletEntries as $index=>$entry)
-{
-  if (strpos($entry, "{client_legend}") !== FALSE)
-  {
-    $entry .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
-    $arrDefaultPalletEntries[$index] = $entry;
-  }
-}
-$GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default'] = implode(";", $arrDefaultPalletEntries); 
 
 /**
  * Add fields
@@ -115,6 +106,31 @@ class tl_monitoring_MonitoringScanClientWorker extends Backend
   public function renderScanClientWorkerExecuteButton($row, $href, $label, $title, $icon)
   {
     return ($row['client_scan_active']) ? '<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . '" title="'.specialchars($title).'">'.Image::getHtml($icon, $label).'</a> ' : Image::getHtml(preg_replace('/\.png$/i', '_.png', $icon)).' ';
+  }
+
+  /**
+   * Initialize the palettes when loading
+   * @param \DataContainer
+   */
+  public function initPalettes()
+  {
+    if (\Input::get('act') == "edit")
+    {
+      $objMonitoringEntry = \MonitoringModel::findByPk(\Input::get('id'));
+      if ($objMonitoringEntry != null && $objMonitoringEntry->client_scan_active)
+      {
+        $arrDefaultPalletEntries = explode(";", $GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default']);
+        foreach ($arrDefaultPalletEntries as $index=>$entry)
+        {
+          if (strpos($entry, "{client_legend}") !== FALSE)
+          {
+            $entry .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
+            $arrDefaultPalletEntries[$index] = $entry;
+          }
+        }
+        $GLOBALS['TL_DCA']['tl_monitoring']['palettes']['default'] = implode(";", $arrDefaultPalletEntries);
+      }
+    }
   }
 }
 
