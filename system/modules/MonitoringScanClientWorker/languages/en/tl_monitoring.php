@@ -31,6 +31,7 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_monitoring']['disable_auto_scanClientWorkerExecute'] = array('Disable automatic execution of workers for MonitoringClient data', 'Select whether the automatic execution of workers for scanned MonitoringClient data for this monitoring entry should be disabled.');
+$GLOBALS['TL_LANG']['tl_monitoring']['excluded_scanClientWorkers']           = array('Excluded workers for MonitoringClient data', 'Select which workers should not be executed for scanned MonitoringClient data for this monitoring entry.');
 
 /**
  * Legends

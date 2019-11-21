@@ -2,7 +2,7 @@
 
 /**
  * Contao Open Source CMS
- * Copyright (C) 2005-2017 Leo Feyer
+ * Copyright (C) 2005-2019 Leo Feyer
  *
  * Formerly known as TYPOlight Open Source CMS.
  *
@@ -21,7 +21,7 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    MonitoringScanClientWorker
  * @license    LGPL
@@ -36,7 +36,7 @@ namespace Monitoring;
  * Class MonitoringScanClientWorker
  *
  * Contains functions to work off the scanned client data.
- * @copyright  Cliff Parnitzky 2017-2017
+ * @copyright  Cliff Parnitzky 2017-2019
  * @author     Cliff Parnitzky
  * @package    Controller
  */
@@ -121,10 +121,14 @@ class MonitoringScanClientWorker extends \Backend
       {
         if (isset($GLOBALS['TL_HOOKS']['monitoringScanClientWork']) && is_array($GLOBALS['TL_HOOKS']['monitoringScanClientWork']))
         {
-          foreach ($GLOBALS['TL_HOOKS']['monitoringScanClientWork'] as $callback)
+          $arrExcludedScanClientWorkers = deserialize($objMonitoringEntry->excluded_scanClientWorkers, true);
+          foreach ($GLOBALS['TL_HOOKS']['monitoringScanClientWork'] as $key=>$callback)
           {
-            $this->import($callback[0]);
-            $this->{$callback[0]}->{$callback[1]}($objMonitoringEntry, $response);
+            if (!in_array($key, $arrExcludedScanClientWorkers))
+            {
+              $this->import($callback[0]);
+              $this->{$callback[0]}->{$callback[1]}($objMonitoringEntry, $response);
+            }
           }
         }
       }

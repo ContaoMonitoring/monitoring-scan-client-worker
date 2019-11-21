@@ -31,6 +31,7 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_monitoring']['disable_auto_scanClientWorkerExecute'] = array('Automatische Ausführung der Abarbeitung von MonitoringClient Daten deaktivieren', 'Wählen Sie ob die automatische Ausführung der Abarbeitung von ausgelesenen MonitoringClient Daten für diesen Monitoring Eintrag deaktiviert werden soll.');
+$GLOBALS['TL_LANG']['tl_monitoring']['excluded_scanClientWorkers']           = array('Ausgenommende Abarbeitung von MonitoringClient Daten', 'Wählen Sie welche Ausführung der Abarbeitung von ausgelesenen MonitoringClient Daten für diesen Monitoring Eintrag ausgeschlossen werden soll.');
 
 /**
  * Legends
