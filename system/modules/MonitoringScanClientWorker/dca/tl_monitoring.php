@@ -72,6 +72,16 @@ $GLOBALS['TL_DCA']['tl_monitoring']['fields']['disable_auto_scanClientWorkerExec
     'eval'                    => array('tl_class'=>'clr'),
     'sql'                     => "char(1) NOT NULL default ''"
 );
+$GLOBALS['TL_DCA']['tl_monitoring']['fields']['excluded_scanClientWorkers'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_monitoring']['excluded_scanClientWorkers'],
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options_callback'        => array('tl_monitoring_MonitoringScanClientWorker', 'getRegisteredScanClientWorkers'),
+    'eval'                    => array('tl_class'=>'clr w50', 'chosen'=>true, 'multiple'=>true),
+    'sql'                     => "blob NULL"
+);
+
 
 /**
  * Class tl_monitoring_MonitoringScanClientWorker
@@ -124,7 +134,7 @@ class tl_monitoring_MonitoringScanClientWorker extends Backend
         {
           if (strpos($entry, "{client_legend}") !== FALSE)
           {
-            $entry .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute";
+            $entry .= ";{scanClientWorkerExecute_legend},disable_auto_scanClientWorkerExecute,excluded_scanClientWorkers";
             $arrDefaultPalletEntries[$index] = $entry;
           }
         }
@@ -132,6 +142,23 @@ class tl_monitoring_MonitoringScanClientWorker extends Backend
       }
     }
   }
+  
+  /**
+   * Returns all registered scan client workers
+   */
+  public function getRegisteredScanClientWorkers(DataContainer $dc)
+  {
+    $arrOptions = array();
+    if (isset($GLOBALS['TL_HOOKS']['monitoringScanClientWork']) && is_array($GLOBALS['TL_HOOKS']['monitoringScanClientWork']))
+    {
+      foreach ($GLOBALS['TL_HOOKS']['monitoringScanClientWork'] as $key=>$callback)
+      {
+        $arrOptions[] = $key;
+      }
+    }
+    return $arrOptions;
+  }
+
 }
 
 ?>
