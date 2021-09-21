@@ -156,7 +156,7 @@ class MonitoringScanClientWorker extends \Backend
       {
         foreach($response_contao as $responseKey=>$responseValue)
         {
-          $response[$responseKey ] = $responseValue;
+          $response[$responseKey] = $responseValue;
         }
       }
       else
