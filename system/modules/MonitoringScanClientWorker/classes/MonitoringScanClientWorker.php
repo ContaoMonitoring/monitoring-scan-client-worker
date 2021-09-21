@@ -119,7 +119,7 @@ class MonitoringScanClientWorker extends \Backend
       $response = [];
       $response_contao = $monitoringScanClient->scanClient($objMonitoringEntry->website, '/api/server/contao' ,$objMonitoringEntry->client_token);
 
-      if( is_array($response_contao) && !array_key_exist('monitoring.server.agent', $response_contao) ) {
+      if( is_array($response_contao) && !array_key_exists('monitoring.server.agent', $response_contao) ) {
 
         foreach($response_contao as $responseKey=>$responseValue)
         {
@@ -152,7 +152,7 @@ class MonitoringScanClientWorker extends \Backend
           \Message::addError($response_config);
         }
       }
-      elseif (is_array($response_contao) && array_key_exist('monitoring.server.agent', $response_contao))
+      elseif (is_array($response_contao) && array_key_exists('monitoring.server.agent', $response_contao))
       {
         foreach($response_contao as $responseKey=>$responseValue)
         {
