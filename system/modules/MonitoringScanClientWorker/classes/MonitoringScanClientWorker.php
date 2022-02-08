@@ -116,7 +116,54 @@ class MonitoringScanClientWorker extends \Backend
     if ($objMonitoringEntry != null && !$objMonitoringEntry->disable && $objMonitoringEntry->client_scan_active)
     {
       $monitoringScanClient = new \MonitoringScanClient();
-      $response = $monitoringScanClient->scanClient($objMonitoringEntry->client_url, $objMonitoringEntry->client_token);
+      $response = [];
+      $response_contao = $monitoringScanClient->scanClient($objMonitoringEntry->website, '/api/server/contao' ,$objMonitoringEntry->client_token);
+
+      if( is_array($response_contao) && !array_key_exists('monitoring.server.agent', $response_contao) ) {
+
+        foreach($response_contao as $responseKey=>$responseValue)
+        {
+          $response['contao.' . $responseKey ] = $responseValue;
+        }
+
+        $response_server = $monitoringScanClient->scanClient($objMonitoringEntry->website, '/api/server/self-update' ,$objMonitoringEntry->client_token);
+        if (is_array($response_server))
+        {
+          foreach($response_server as $responseKey=>$responseValue)
+          {
+            $response['contao_manager.' . $responseKey ] = $responseValue;
+          }
+        }
+        else
+        {
+          \Message::addError($response_server);
+        }
+
+        $response_config = $monitoringScanClient->scanClient($objMonitoringEntry->website, '/api/server/config' ,$objMonitoringEntry->client_token);
+        if (is_array($response_config))
+        {
+          foreach($response_config as $responseKey=>$responseValue)
+          {
+            $response['server.' . $responseKey ] = $responseValue;
+          }
+        }
+        else
+        {
+          \Message::addError($response_config);
+        }
+      }
+      elseif (is_array($response_contao) && array_key_exists('monitoring.server.agent', $response_contao))
+      {
+        foreach($response_contao as $responseKey=>$responseValue)
+        {
+          $response[$responseKey] = $responseValue;
+        }
+      }
+      else
+      {
+        \Message::addError($response_contao);
+      }
+
       if (is_array($response))
       {
         if (isset($GLOBALS['TL_HOOKS']['monitoringScanClientWork']) && is_array($GLOBALS['TL_HOOKS']['monitoringScanClientWork']))
@@ -159,5 +206,3 @@ class MonitoringScanClientWorker extends \Backend
     }
   }
 }
-
-?>
